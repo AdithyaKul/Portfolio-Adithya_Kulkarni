@@ -1,3 +1,54 @@
+# Hi, I'm Adithya R Kulkarni 👋
+
+### 🚀 Student | MERN Developer | UI/UX Enthusiast
+
+I am a passionate builder driven by the challenge of solving problems through code. While my roots are in **C++** and **Java**, my playground is the **MERN Stack**, where I focus on creating seamless user experiences with a sharp eye for **UI/UX**.
+
+- 🔭 **Currently:** Diving deep into AI integration and advanced React patterns.
+
+- 💡 **Passion:** Finding "cool stuff" to build that pushes the boundaries of what I know.
+
+- 🛠️ **Philosophy:** "Building things that work. Fixing things that don't."
+
+---
+
+### 🛠️ My Tech Toolbox
+
+| Category | Tools & Languages |
+| :--- | :--- |
+| **Languages** | `C++`, `Java`, `JavaScript (ES6+)` |
+| **Frontend** | `React.js`, `Redux`, `Tailwind CSS`, `UI/UX Design` |
+| **Backend** | `Node.js`, `Express.js`, `MongoDB` |
+| **Currently Exploring** | `AI/ML Frameworks`, `Next.js` |
+
+---
+
+### 📂 What I'm working on
+
+*Check out my pinned repositories to see my latest experiments in:*
+
+* **MERN Applications:** Full-stack solutions with clean architecture.
+
+* **Algorithm Challenges:** Solving complex problems in C++ and Java.
+
+* **Design-to-Code:** Turning high-fidelity UI/UX concepts into functional reality.
+
+---
+
+### 🎧 Beyond the Code
+
+When the screen is off and the IDE is closed, you'll find me:
+
+* 🎵 Lost in **music** (my primary fuel for creativity).
+
+* 🧠 Researching new tech trends and AI breakthroughs.
+
+* 🤝 Looking for collaborative projects to ignite my passion.
+
+**Let's build something cool together!**
+
+📫 [Email Me](mailto:your-email@example.com) | 🔗 [LinkedIn](https://linkedin.com/in/your-profile)
+
 # Portfolio Website - MERN Stack
 
 A full-featured portfolio website built with the MERN stack (MongoDB, Express.js, React, Node.js) that allows you to showcase both technical and non-technical projects with an admin panel for easy management.
