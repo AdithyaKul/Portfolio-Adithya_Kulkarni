@@ -19,7 +19,6 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   // Scroll animation effect
   useEffect(() => {
-    // Using IntersectionObserver for better performance
     const observerOptions = {
       root: null,
       rootMargin: '0px',
@@ -30,23 +29,36 @@ function App() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate');
-          // Optional: Stop observing once animated if you only want it to run once
-          // observer.unobserve(entry.target);
         }
       });
     };
 
     const observer = new IntersectionObserver(handleIntersect, observerOptions);
-    const elements = document.querySelectorAll('.scroll-animate');
 
-    elements.forEach(element => {
-      observer.observe(element);
+    const observeNewElements = () => {
+      const elements = document.querySelectorAll('.scroll-animate');
+      elements.forEach(element => {
+        observer.observe(element);
+      });
+    };
+
+    // Initial observation
+    observeNewElements();
+
+    // Use MutationObserver to watch for newly added .scroll-animate elements
+    const mutationObserver = new MutationObserver((mutations) => {
+      mutations.forEach(mutation => {
+        if (mutation.addedNodes.length) {
+          observeNewElements();
+        }
+      });
     });
 
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+
     return () => {
-      elements.forEach(element => {
-        observer.unobserve(element);
-      });
+      observer.disconnect();
+      mutationObserver.disconnect();
     };
   }, []);
 

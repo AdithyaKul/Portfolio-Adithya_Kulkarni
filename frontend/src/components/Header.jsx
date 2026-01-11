@@ -29,13 +29,13 @@ const Header = () => {
     <header className="header">
       <div className="container">
         <Link to="/" className="logo">
-          Portfolio
+          Adithya.K
         </Link>
         <nav className="nav">
           <ul>
             <li>
-              <NavLink 
-                to="/" 
+              <NavLink
+                to="/"
                 end
                 className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
               >
@@ -43,7 +43,7 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink 
+              <NavLink
                 to="/projects"
                 className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
               >
@@ -51,7 +51,7 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink 
+              <NavLink
                 to="/resume"
                 className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
               >
@@ -62,7 +62,7 @@ const Header = () => {
               <>
                 {/* Admin link removed from navigation but still accessible via /admin URL */}
                 <li>
-                  <button 
+                  <button
                     onClick={handleLogout}
                     className="btn btn-secondary btn-small"
                     style={{ marginLeft: '0.5rem' }}

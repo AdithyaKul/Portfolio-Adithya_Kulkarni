@@ -29,7 +29,7 @@ export const useProjects = (filters = {}) => {
       }
 
       if (filters.projectType) {
-        filteredData = filteredData.filter(p => p.type === filters.projectType);
+        filteredData = filteredData.filter(p => p.projectType === filters.projectType);
       }
 
       setProjects(filteredData);
