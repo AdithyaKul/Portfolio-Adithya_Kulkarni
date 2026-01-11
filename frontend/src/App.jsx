@@ -19,27 +19,34 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   // Scroll animation effect
   useEffect(() => {
-    const handleScroll = () => {
-      const elements = document.querySelectorAll('.scroll-animate');
-      elements.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        const elementVisible = 150;
-        
-        if (elementTop < window.innerHeight - elementVisible) {
-          element.classList.add('animate');
+    // Using IntersectionObserver for better performance
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const handleIntersect = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          // Optional: Stop observing once animated if you only want it to run once
+          // observer.unobserve(entry.target);
         }
       });
     };
 
-    // Initial check on page load
-    handleScroll();
-    
-    // Add scroll event listener
-    window.addEventListener('scroll', handleScroll);
-    
-    // Cleanup
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+    const elements = document.querySelectorAll('.scroll-animate');
+
+    elements.forEach(element => {
+      observer.observe(element);
+    });
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      elements.forEach(element => {
+        observer.unobserve(element);
+      });
     };
   }, []);
 

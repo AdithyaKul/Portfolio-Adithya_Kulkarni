@@ -17,7 +17,7 @@ I am a passionate builder driven by the challenge of solving problems through co
 | Category | Tools & Languages |
 | :--- | :--- |
 | **Languages** | `C++`, `Java`, `JavaScript (ES6+)` |
-| **Frontend** | `React.js`, `Redux`, `Tailwind CSS`, `UI/UX Design` |
+| **Frontend** | `React.js`, `Redux`, `Vanilla CSS` (Custom Design System), `UI/UX Design` |
 | **Backend** | `Node.js`, `Express.js`, `MongoDB` |
 | **Currently Exploring** | `AI/ML Frameworks`, `Next.js` |
 
