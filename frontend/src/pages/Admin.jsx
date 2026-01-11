@@ -11,7 +11,7 @@ const Admin = () => {
     category: 'technical',
     projectType: 'other',
     imageUrl: '',
-    projectUrl: '',
+    liveUrl: '',
     githubUrl: '',
     featured: false
   });
@@ -39,13 +39,13 @@ const Admin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       const projectData = {
         ...formData,
         technologies: formData.technologies.split(',').map(tech => tech.trim()).filter(tech => tech)
       };
-      
+
       if (editingId) {
         await updateProject(editingId, projectData);
         setMessage('Project updated successfully!');
@@ -56,7 +56,7 @@ const Admin = () => {
         setMessage('Project created successfully!');
         setMessageType('success');
       }
-      
+
       // Reset form
       setFormData({
         title: '',
@@ -65,11 +65,11 @@ const Admin = () => {
         category: 'technical',
         projectType: 'other',
         imageUrl: '',
-        projectUrl: '',
+        liveUrl: '',
         githubUrl: '',
         featured: false
       });
-      
+
       // Refresh projects list
       refresh();
     } catch (err) {
@@ -86,7 +86,7 @@ const Admin = () => {
       category: project.category,
       projectType: project.projectType,
       imageUrl: project.imageUrl || '',
-      projectUrl: project.projectUrl || '',
+      liveUrl: project.liveUrl || project.projectUrl || '',
       githubUrl: project.githubUrl || '',
       featured: project.featured || false
     });
@@ -116,7 +116,7 @@ const Admin = () => {
       category: 'technical',
       projectType: 'other',
       imageUrl: '',
-      projectUrl: '',
+      liveUrl: '',
       githubUrl: '',
       featured: false
     });
@@ -129,17 +129,20 @@ const Admin = () => {
       <div className="container">
         <div className="page-header animate-fade-in-up">
           <h1>Admin Dashboard</h1>
-          <p className="section-description">Manage your portfolio projects</p>
+          <p className="section-description">Manage your portfolio projects with ease</p>
         </div>
-        
+
         {message && (
           <div className={`alert alert-${messageType} animate-fade-in-up`}>
-            {messageType === 'success' && '✓ '}
-            {messageType === 'error' && '⚠ '}
-            {message}
+            <div className="alert-icon">
+              {messageType === 'success' && '✓'}
+              {messageType === 'error' && '⚠'}
+              {messageType === 'info' && 'ℹ'}
+            </div>
+            <div className="alert-message">{message}</div>
           </div>
         )}
-        
+
         <div className="admin-content">
           <div className="form-section animate-fade-in-up delay-1">
             <div className="form-header">
@@ -150,7 +153,7 @@ const Admin = () => {
                 </button>
               )}
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="premium-form">
               <div className="form-group">
                 <label htmlFor="title">Project Title</label>
                 <input
@@ -160,10 +163,10 @@ const Admin = () => {
                   value={formData.title}
                   onChange={handleChange}
                   required
-                  placeholder="Enter project title"
+                  placeholder="e.g., RegisterYu Campus App"
                 />
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="description">Description</label>
                 <textarea
@@ -173,10 +176,11 @@ const Admin = () => {
                   onChange={handleChange}
                   rows="4"
                   required
-                  placeholder="Describe your project in detail..."
+                  placeholder="Describe the impact and technical challenges..."
                 ></textarea>
+                <div className="char-count">{formData.description.length} characters</div>
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="technologies">Technologies (comma separated)</label>
                 <input
@@ -185,10 +189,15 @@ const Admin = () => {
                   name="technologies"
                   value={formData.technologies}
                   onChange={handleChange}
-                  placeholder="React, Node.js, MongoDB"
+                  placeholder="React, Node.js, Supabase"
                 />
+                <div className="tech-preview">
+                  {formData.technologies.split(',').map((tech, i) => tech.trim() && (
+                    <span key={i} className="tech-tag-preview">{tech.trim()}</span>
+                  ))}
+                </div>
               </div>
-              
+
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="category">Category</label>
@@ -202,7 +211,7 @@ const Admin = () => {
                     <option value="non-technical">Non-Technical</option>
                   </select>
                 </div>
-                
+
                 <div className="form-group">
                   <label htmlFor="projectType">Project Type</label>
                   <select
@@ -219,7 +228,7 @@ const Admin = () => {
                   </select>
                 </div>
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="imageUrl">Image URL</label>
                 <input
@@ -228,109 +237,119 @@ const Admin = () => {
                   name="imageUrl"
                   value={formData.imageUrl}
                   onChange={handleChange}
-                  placeholder="https://example.com/image.jpg"
+                  placeholder="https://images.unsplash.com/..."
                 />
+                {formData.imageUrl && (
+                  <div className="image-preview">
+                    <img src={formData.imageUrl} alt="Preview" onError={(e) => e.target.style.display = 'none'} />
+                  </div>
+                )}
               </div>
-              
+
               <div className="form-row">
                 <div className="form-group">
-                  <label htmlFor="projectUrl">Project URL</label>
+                  <label htmlFor="liveUrl">Live Project URL</label>
                   <input
                     type="text"
-                    id="projectUrl"
-                    name="projectUrl"
-                    value={formData.projectUrl}
+                    id="liveUrl"
+                    name="liveUrl"
+                    value={formData.liveUrl}
                     onChange={handleChange}
-                    placeholder="https://example.com/project"
+                    placeholder="https://project.com"
                   />
                 </div>
-                
+
                 <div className="form-group">
-                  <label htmlFor="githubUrl">GitHub URL</label>
+                  <label htmlFor="githubUrl">GitHub Repository</label>
                   <input
                     type="text"
                     id="githubUrl"
                     name="githubUrl"
                     value={formData.githubUrl}
                     onChange={handleChange}
-                    placeholder="https://github.com/username/project"
+                    placeholder="https://github.com/..."
                   />
                 </div>
               </div>
-              
+
               <div className="form-group checkbox-group">
-                <input
-                  type="checkbox"
-                  id="featured"
-                  name="featured"
-                  checked={formData.featured}
-                  onChange={handleChange}
-                />
-                <label htmlFor="featured">Featured Project</label>
+                <div className="custom-checkbox">
+                  <input
+                    type="checkbox"
+                    id="featured"
+                    name="featured"
+                    checked={formData.featured}
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="featured">Mark as Featured Project</label>
+                </div>
               </div>
-              
+
               <div className="form-actions">
-                <button type="submit" className="btn btn-primary">
-                  {editingId ? 'Update Project' : 'Add Project'}
-                </button>
-                <button type="button" className="btn btn-secondary" onClick={() => refresh()}>
-                  Refresh Projects
+                <button type="submit" className="btn btn-primary btn-large">
+                  {editingId ? 'Update & Save' : 'Publish Project'}
                 </button>
               </div>
             </form>
           </div>
-          
+
           <div className="projects-section animate-fade-in-up delay-2">
             <div className="section-header">
-              <h2>Existing Projects</h2>
+              <h2>Project Inventory</h2>
               <div className="section-actions">
+                <span className="project-count">{projects.length} Total</span>
                 <button className="btn btn-secondary btn-small" onClick={refresh}>
-                  Refresh
+                  ⟳ Sync
                 </button>
               </div>
             </div>
             {loading ? (
               <div className="loading-placeholder">
                 <div className="spinner"></div>
-                <p>Loading projects...</p>
+                <p>Synchronizing project data...</p>
               </div>
             ) : error ? (
               <div className="error-placeholder">
-                <p>Error loading projects: {error}</p>
+                <p>Connection issue: {error}</p>
                 <button className="btn btn-secondary" onClick={() => refresh()}>
-                  Retry
+                  Retry Fetch
                 </button>
               </div>
             ) : (
-              <div className="projects-list">
+              <div className="projects-list-admin">
                 {projects.length === 0 ? (
                   <div className="empty-placeholder">
-                    <h3>No projects yet</h3>
-                    <p>Add your first project using the form on the left</p>
+                    <div className="empty-icon">📁</div>
+                    <h3>No projects found</h3>
+                    <p>Start your journey by adding a new project!</p>
                   </div>
                 ) : (
                   projects.map((project) => (
-                    <div key={project._id} className="project-item animate-fade-in-up">
-                      <div className="project-info">
+                    <div key={project._id} className="project-item-admin">
+                      <div className="project-status">
+                        {project.featured && <span className="featured-dot" title="Featured"></span>}
+                      </div>
+                      <div className="project-info-admin">
                         <h3>{project.title}</h3>
-                        <div className="project-meta">
-                          <span className={`category ${project.category}`}>{project.category}</span>
-                          <span className="type">{project.projectType}</span>
-                          {project.featured && <span className="featured">Featured</span>}
+                        <div className="project-meta-admin">
+                          <span className={`badge badge-${project.category}`}>{project.category}</span>
+                          <span className="badge badge-type">{project.projectType}</span>
                         </div>
                       </div>
-                      <div className="project-actions">
-                        <button 
-                          className="btn btn-small btn-secondary"
+                      <div className="project-actions-admin">
+                        <button
+                          className="action-btn edit"
                           onClick={() => handleEdit(project)}
+                          title="Edit"
                         >
-                          Edit
+                          ✎
                         </button>
-                        <button 
-                          className="btn btn-small btn-danger"
+                        <button
+                          className="action-btn delete"
                           onClick={() => handleDelete(project._id)}
+                          title="Delete"
                         >
-                          Delete
+                          🗑
                         </button>
                       </div>
                     </div>
