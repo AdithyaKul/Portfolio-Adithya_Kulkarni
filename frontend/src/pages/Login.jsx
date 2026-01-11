@@ -29,18 +29,19 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    
+
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const apiUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api') + '/auth/login';
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(credentials)
       });
-      
+
       const data = await response.json();
-      
+
       if (data.success) {
         // Store token in localStorage
         localStorage.setItem('token', data.token);
@@ -61,18 +62,19 @@ const Login = () => {
     setLoading(true);
     setError('');
     setForgotSuccess('');
-    
+
     try {
-      const response = await fetch('http://localhost:5000/api/auth/forgotpassword', {
+      const apiUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api') + '/auth/forgotpassword';
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ email: forgotEmail })
       });
-      
+
       const data = await response.json();
-      
+
       if (data.success) {
         setForgotSuccess('Password reset email sent. Please check your inbox.');
       } else {
@@ -95,13 +97,13 @@ const Login = () => {
                 <h1>Admin Login</h1>
                 <p>Please enter your credentials to access the admin panel</p>
               </div>
-              
+
               {error && (
                 <div className="alert alert-error animate-fade-in-up">
                   {error}
                 </div>
               )}
-              
+
               <form onSubmit={handleSubmit} className="login-form">
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
@@ -115,7 +117,7 @@ const Login = () => {
                     placeholder="Enter your email"
                   />
                 </div>
-                
+
                 <div className="form-group">
                   <label htmlFor="password">Password</label>
                   <input
@@ -128,10 +130,10 @@ const Login = () => {
                     placeholder="Enter your password"
                   />
                 </div>
-                
+
                 <div className="form-actions">
-                  <button 
-                    type="submit" 
+                  <button
+                    type="submit"
                     className="btn btn-primary"
                     disabled={loading}
                   >
@@ -139,9 +141,9 @@ const Login = () => {
                   </button>
                 </div>
               </form>
-              
+
               <div className="login-footer">
-                <button 
+                <button
                   onClick={() => setShowForgotPassword(true)}
                   className="btn btn-secondary btn-small"
                 >
@@ -155,19 +157,19 @@ const Login = () => {
                 <h1>Reset Password</h1>
                 <p>Enter your email to receive a password reset link</p>
               </div>
-              
+
               {error && (
                 <div className="alert alert-error animate-fade-in-up">
                   {error}
                 </div>
               )}
-              
+
               {forgotSuccess && (
                 <div className="alert alert-success animate-fade-in-up">
                   {forgotSuccess}
                 </div>
               )}
-              
+
               <form onSubmit={handleForgotPassword} className="login-form">
                 <div className="form-group">
                   <label htmlFor="forgotEmail">Email</label>
@@ -181,10 +183,10 @@ const Login = () => {
                     placeholder="Enter your email"
                   />
                 </div>
-                
+
                 <div className="form-actions">
-                  <button 
-                    type="submit" 
+                  <button
+                    type="submit"
                     className="btn btn-primary"
                     disabled={loading}
                   >
@@ -192,9 +194,9 @@ const Login = () => {
                   </button>
                 </div>
               </form>
-              
+
               <div className="login-footer">
-                <button 
+                <button
                   onClick={() => {
                     setShowForgotPassword(false);
                     setError('');
