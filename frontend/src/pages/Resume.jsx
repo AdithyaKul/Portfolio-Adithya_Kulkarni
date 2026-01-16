@@ -4,33 +4,33 @@ import { Link } from 'react-router-dom';
 const Resume = () => {
   // Contact options
   const contactOptions = [
-    { 
-      name: 'Email', 
-      value: 'kul.adithya@gmail.com', 
+    {
+      name: 'Email',
+      value: 'kul.adithya@gmail.com',
       icon: '📧',
       link: 'mailto:kul.adithya@gmail.com'
     },
-    { 
-      name: 'Phone', 
-      value: '+91 7483408246', 
+    {
+      name: 'Phone',
+      value: '+91 7483408246',
       icon: '📱',
       link: 'tel:+917483408246'
     },
-    { 
-      name: 'LinkedIn', 
-      value: 'linkedin.com/in/adithya-r-kulkarni', 
+    {
+      name: 'LinkedIn',
+      value: 'linkedin.com/in/adithya-r-kulkarni',
       icon: '💼',
       link: 'https://linkedin.com/in/adithya-r-kulkarni'
     },
-    { 
-      name: 'GitHub', 
-      value: 'github.com/Adithya-R-Kulkarni', 
+    {
+      name: 'GitHub',
+      value: 'github.com/Adithya-R-Kulkarni',
       icon: '💻',
       link: 'https://github.com/Adithya-R-Kulkarni'
     },
-    { 
-      name: 'Location', 
-      value: 'Bengaluru, Karnataka, India', 
+    {
+      name: 'Location',
+      value: 'Bengaluru, Karnataka, India',
       icon: '📍',
       link: null
     }
@@ -60,7 +60,7 @@ const Resume = () => {
             ← Back to Home
           </Link>
         </div>
-        
+
         <div className="resume-header animate-fade-in-up delay-1">
           <div className="resume-contact">
             <h1>Adithya R Kulkarni</h1>
@@ -74,19 +74,19 @@ const Resume = () => {
             <h3>Creative Designer & Video Editor</h3>
           </div>
         </div>
-        
+
         <div className="resume-content">
           <section className="resume-section animate-fade-in-up delay-2">
             <h2>Profile</h2>
             <p>
-              MERN stack developer with a passion for building clean, responsive web applications and a proven, 
-              award-winning talent for creative design. My focus is on blending technical logic with user-centric 
-              design, drawing on an interest in UI/UX (Figma) and 2+ years of experience in graphic design and 
+              MERN stack developer with a passion for building clean, responsive web applications and a proven,
+              award-winning talent for creative design. My focus is on blending technical logic with user-centric
+              design, drawing on an interest in UI/UX (Figma) and 2+ years of experience in graphic design and
               video production (DaVinci Resolve, Adobe Creative Suit, Canva).
             </p>
             <p>
-              As the Managing Director of OSCode, I lead a campus tech community, organize large-scale events, 
-              and mentor students on development projects. Actively seeking an internship that combines software 
+              As the Managing Director of OSCode, I lead a campus tech community, organize large-scale events,
+              and mentor students on development projects. Actively seeking an internship that combines software
               development with creative challenges.
             </p>
           </section>
@@ -107,7 +107,7 @@ const Resume = () => {
                 </div>
               ))}
             </div>
-            
+
             <div className="skills-tags">
               <span>Problem Solving</span>
               <span>Team Leadership</span>
@@ -124,17 +124,17 @@ const Resume = () => {
                 <h3>Community Tech Platform</h3>
                 <p className="tech-stack">React.js, Node.js, MongoDB, Express.js</p>
                 <p>
-                  Developed a full-stack website for a college tech community with event registration, 
-                  member management, and project showcase features. Implemented responsive design and 
+                  Developed a full-stack website for a college tech community with event registration,
+                  member management, and project showcase features. Implemented responsive design and
                   integrated a CMS for easy content updates.
                 </p>
               </div>
-              
+
               <div className="project">
                 <h3>Portfolio Website</h3>
                 <p className="tech-stack">React.js, Node.js, MongoDB, Express.js</p>
                 <p>
-                  Built a personal portfolio website to showcase both technical and creative projects. 
+                  Built a personal portfolio website to showcase both technical and creative projects.
                   Features include project filtering, admin panel for content management, and responsive design.
                 </p>
               </div>
@@ -148,16 +148,16 @@ const Resume = () => {
                 <h3>Managing Director - Tech Community</h3>
                 <p className="duration">Oct 2023 - Present</p>
                 <p>
-                  Leading a student-run tech community with 300+ members. Organized hackathons, workshops, 
+                  Leading a student-run tech community with 300+ members. Organized hackathons, workshops,
                   and coding competitions. Managed a team of 15 core members and coordinated with faculty advisors.
                 </p>
               </div>
-              
+
               <div className="experience">
                 <h3>Graphic Designer - Freelance</h3>
                 <p className="duration">Jan 2022 - Present</p>
                 <p>
-                  Designed promotional materials, social media content, and branding assets for various clients. 
+                  Designed promotional materials, social media content, and branding assets for various clients.
                   Specialized in creating visually appealing designs that effectively communicate brand messages.
                 </p>
               </div>
@@ -169,8 +169,8 @@ const Resume = () => {
             <div className="education">
               <h3>Bachelor of Engineering in Computer Science</h3>
               <p>Nitte Meenakshi Institute of Technology, Bengaluru</p>
-              <p className="duration">Expected Graduation: 2026</p>
-              <p>Current CGPA: 8.9/10</p>
+              <p className="duration">Expected Graduation: 2027</p>
+
             </div>
           </section>
 
@@ -232,7 +232,7 @@ const Resume = () => {
           <section className="resume-download-section animate-fade-in-up delay-0">
             <h2>Download Full Resume</h2>
             <p>Get a complete copy of my resume in PDF format</p>
-            <a href="/Adithya R Kulkarni.pdf" download className="btn btn-primary">
+            <a href="/Adithya_Kulkarni_Resume.pdf" download="Adithya_Kulkarni_Resume.pdf" className="btn btn-primary">
               Download PDF
             </a>
           </section>
